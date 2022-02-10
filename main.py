@@ -45,6 +45,7 @@ if __name__ == "__main__":
     url = input()
 
     if is_bitlink(token, url) == True:
+
         try:
             print(click_count(token, url))
         except requests.exceptions.HTTPError:
