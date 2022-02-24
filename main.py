@@ -3,9 +3,9 @@ import requests
 import os
 
 
-def shorten_link(token, url):
+def shorten_link(bitly_token, url):
     headers = {
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {bitly_token}"
     }
 
     long_url = {"long_url":url}
@@ -18,7 +18,7 @@ def shorten_link(token, url):
 
 def click_count(token, bitlink):
     headers = {
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {bitly_token}"
     }
 
     response = requests.get(f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}/clicks/summary", headers=headers)
@@ -28,9 +28,9 @@ def click_count(token, bitlink):
     return response.json()["total_clicks"]
 
 
-def is_bitlink(token, bitlink):
+def is_bitlink(bitly_token, bitlink):
     headers = {
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {bitly_token}"
     }
 
     response = requests.get(f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}", headers=headers)
@@ -40,19 +40,19 @@ def is_bitlink(token, bitlink):
 if __name__ == "__main__":
     load_dotenv()
 
-    token = os.getenv('TOKEN')
+    Bitly_token = os.getenv('BITLY_TOKEN')
 
     url = input()
 
-    if is_bitlink(token, url) == True:
+    if is_bitlink(bitly_token, url) == True:
 
         try:
-            print(click_count(token, url))
+            print(click_count(bitly_token, url))
         except requests.exceptions.HTTPError:
             print("Ошибка")
     else:
         try:
-            print(shorten_link(token, url))
+            print(shorten_link(bitly_token, url))
         except requests.exceptions.HTTPError:
             print("Ошибка, неверная ссылка")
 
