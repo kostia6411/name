@@ -16,7 +16,7 @@ def shorten_link(bitly_token, url):
 
     return response.json()["id"]
 
-def click_count(token, bitlink):
+def count_number_clicks(token, bitlink):
     headers = {
         "Authorization": f"Bearer {bitly_token}"
     }
@@ -47,7 +47,7 @@ if __name__ == "__main__":
     if is_bitlink(bitly_token, url) == True:
 
         try:
-            print(click_count(bitly_token, url))
+            print(count_number_clicks(bitly_token, url))
         except requests.exceptions.HTTPError:
             print("Ошибка")
     else:
