@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 import requests
 import os
@@ -40,14 +41,16 @@ def is_bitlink(bitly_token, bitlink):
 if __name__ == "__main__":
     load_dotenv()
 
-    Bitly_token = os.getenv('BITLY_TOKEN')
+    bitly_token = os.getenv('BITLY_TOKEN')
 
     url = input()
 
-    if is_bitlink(bitly_token, url) == True:
+    parts_link = urlparse(url)
+    glued_link = f"{parts_link.netloc}{parts_link.path}"
 
+    if is_bitlink(bitly_token, glued_link) == True:
         try:
-            print(count_number_clicks(bitly_token, url))
+            print(count_number_clicks(bitly_token, glued_link))
         except requests.exceptions.HTTPError:
             print("Ошибка")
     else:
