@@ -58,5 +58,3 @@ if __name__ == "__main__":
             print(shorten_link(bitly_token, url))
         except requests.exceptions.HTTPError:
             print("Ошибка, неверная ссылка")
-
-    """bit.ly/3fa6jy6 = "http://dvmn.org/modules/web-api/lesson/bitly/#3"""
