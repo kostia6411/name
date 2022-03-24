@@ -13,11 +13,11 @@ HEADERS = {
 
 
 def shorten_link(url):
-    long_url = {"long_url": url}
+    payload = {"payload": url}
 
     response = requests.post("https://api-ssl.bitly.com/v4/shorten",
                              headers=HEADERS,
-                             json=long_url)
+                             json=payload)
 
     response.raise_for_status()
 
