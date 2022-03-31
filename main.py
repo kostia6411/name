@@ -5,6 +5,8 @@ from dotenv import dotenv_values
 from urllib.parse import urlparse
 
 
+CUSTOM_DOMAIN = dotenv_values(".env")["CUSTOM_DOMAIN"]
+
 BITLY_TOKEN = dotenv_values(".env")["BITLY_TOKEN"]
 
 HEADERS = {
@@ -13,7 +15,8 @@ HEADERS = {
 
 
 def shorten_link(url):
-    payload = {"long_url": url}
+    payload = {"long_url": url,
+                "domain": CUSTOM_DOMAIN}
 
     response = requests.post("https://api-ssl.bitly.com/v4/shorten",
                              headers=HEADERS,
