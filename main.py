@@ -1,7 +1,7 @@
 import os
 
 import requests
-from dotenv import load_dotenv, dotenv_values
+from dotenv import dotenv_values
 from urllib.parse import urlparse
 
 
@@ -50,8 +50,6 @@ def is_exists(url):
 
 
 if __name__ == "__main__":
-    load_dotenv()
-
     url = input()
 
     parts_link = urlparse(url)
