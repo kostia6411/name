@@ -55,14 +55,14 @@ def is_exists(url):
 if __name__ == "__main__":
     url = input()
 
-    parts_link = urlparse(url)
-    glued_link = f"{parts_link.netloc}{parts_link.path}"
+    parsed_link = urlparse(url)
+    url_without_protocol = f"{parsed_link.netloc}{parsed_link.path}"
 
     try:
         is_exists(url)
-        if is_bitlink(glued_link):
+        if is_bitlink(url_without_protocol):
             try:
-                print(count_number_clicks(glued_link))
+                print(count_number_clicks(url_without_protocol))
             except requests.exceptions.HTTPError as error:
                 exit("Ошибка:\n{0}".format(error))
         else:
