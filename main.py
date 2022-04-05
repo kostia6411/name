@@ -44,12 +44,10 @@ def is_bitlink(bitlink):
     return response.ok
 
 
-def is_exists(url):
+def checking_existence(url):
     response = requests.get(url)
 
     response.raise_for_status()
-
-    return response.ok
 
 
 if __name__ == "__main__":
@@ -59,7 +57,7 @@ if __name__ == "__main__":
     url_without_protocol = f"{parsed_link.netloc}{parsed_link.path}"
 
     try:
-        is_exists(url)
+        checking_existence(url)
         if is_bitlink(url_without_protocol):
             try:
                 print(count_number_clicks(url_without_protocol))
