@@ -1,8 +1,8 @@
 import os
+from urllib.parse import urlparse
 
 import requests
 from dotenv import dotenv_values
-from urllib.parse import urlparse
 
 
 CUSTOM_DOMAIN = dotenv_values(".env")["CUSTOM_DOMAIN"]
