@@ -5,7 +5,7 @@ import requests
 from dotenv import dotenv_values
 
 
-CUSTOM_DOMAIN = dotenv_values(".env")["CUSTOM_DOMAIN"]
+CUSTOM_DOMAIN = dotenv_values(".env").get("CUSTOM_DOMAIN","")
 
 BITLY_TOKEN = dotenv_values(".env")["BITLY_TOKEN"]
 
