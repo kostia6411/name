@@ -1,3 +1,4 @@
+import argparse
 import os
 from urllib.parse import urlparse
 
@@ -51,7 +52,15 @@ def checking_existence(url):
 
 
 if __name__ == "__main__":
-    url = input()
+    parser = argparse.ArgumentParser(
+    description='Пограмма считает ссылки и сокращает их'
+    )
+
+    parser.add_argument('link', help='Подставте ссылку сюда')
+
+    args = parser.parse_args()
+
+    url = args.link
 
     parsed_link = urlparse(url)
     url_without_protocol = f"{parsed_link.netloc}{parsed_link.path}"
