@@ -54,10 +54,10 @@ def checking_existence(url):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='Пограмма считает ссылки и сокращает их'
+        description='Программа считает ссылки и сокращает их'
     )
 
-    parser.add_argument('link', help='Подставте ссылку сюда')
+    parser.add_argument('link', help='Подставьте ссылку сюда')
 
     args = parser.parse_args()
 
