@@ -6,7 +6,7 @@ import requests
 from dotenv import dotenv_values
 
 
-CUSTOM_DOMAIN = dotenv_values(".env").get("CUSTOM_DOMAIN","")
+CUSTOM_DOMAIN = dotenv_values(".env").get("CUSTOM_DOMAIN", "")
 
 BITLY_TOKEN = dotenv_values(".env")["BITLY_TOKEN"]
 
@@ -17,7 +17,8 @@ HEADERS = {
 
 def shorten_link(url):
     payload = {"long_url": url,
-                "domain": CUSTOM_DOMAIN}
+               "domain": CUSTOM_DOMAIN
+               }
 
     response = requests.post("https://api-ssl.bitly.com/v4/shorten",
                              headers=HEADERS,
@@ -53,7 +54,7 @@ def checking_existence(url):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-    description='Пограмма считает ссылки и сокращает их'
+        description='Пограмма считает ссылки и сокращает их'
     )
 
     parser.add_argument('link', help='Подставте ссылку сюда')
