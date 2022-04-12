@@ -79,4 +79,4 @@ if __name__ == "__main__":
             except requests.exceptions.HTTPError as error:
                 exit("Ошибка, неверная ссылка:\n{0}".format(error))
     except requests.exceptions.HTTPError as error:
-        exit("Ссылка не существует:\n{0}".format(error))
+        exit("Ссылка не существует или произошла ошибка:\n{0}".format(error))
