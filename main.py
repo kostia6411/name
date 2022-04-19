@@ -16,13 +16,16 @@ HEADERS = {
 
 
 def shorten_link(url):
-    payload = {"long_url": url,
-               "domain": CUSTOM_DOMAIN
-               }
+    payload = {
+        "long_url": url,
+        "domain": CUSTOM_DOMAIN
+    }
 
-    response = requests.post("https://api-ssl.bitly.com/v4/shorten",
-                             headers=HEADERS,
-                             json=payload)
+    response = requests.post(
+        f"{main_link}shorten",
+        headers=HEADERS,
+        json=payload
+    )
 
     response.raise_for_status()
 
@@ -30,9 +33,11 @@ def shorten_link(url):
 
 
 def count_number_clicks(bitlink):
-    response = requests.get(f"https://api-ssl.bitly.com/v4/bitlinks/"\
-                            f"{bitlink}/clicks/summary",
-                            headers=HEADERS)
+    response = requests.get(
+        f"{main_link}bitlinks/"\
+        f"{bitlink}/clicks/summary",
+        headers=HEADERS
+    )
 
     response.raise_for_status()
 
@@ -40,19 +45,22 @@ def count_number_clicks(bitlink):
 
 
 def is_bitlink(bitlink):
-    response = requests.get(f"https://api-ssl.bitly.com/v4/bitlinks/{bitlink}",
-                            headers=HEADERS)
+    response = requests.get(
+        f"{main_link}bitlinks/{bitlink}",
+        headers=HEADERS
+    )
 
     return response.ok
 
 
 def checking_existence(url):
-    response = requests.get(url)
+    response = requests.get(f"http://{url}")
 
-    response.raise_for_status()
-
+    return response.ok
 
 if __name__ == "__main__":
+    main_link = "https://api-ssl.bitly.com/v4/"
+
     parser = argparse.ArgumentParser(
         description='Программа считает ссылки и сокращает их'
     )
@@ -67,16 +75,10 @@ if __name__ == "__main__":
     url_without_protocol = f"{parsed_link.netloc}{parsed_link.path}"
 
     try:
-        checking_existence(url)
+        checking_existence(url_without_protocol)
         if is_bitlink(url_without_protocol):
-            try:
-                print(count_number_clicks(url_without_protocol))
-            except requests.exceptions.HTTPError as error:
-                exit("Ошибка:\n{0}".format(error))
+            print(count_number_clicks(url_without_protocol))
         else:
-            try:
-                print(shorten_link(url))
-            except requests.exceptions.HTTPError as error:
-                exit("Ошибка, неверная ссылка:\n{0}".format(error))
+            print(shorten_link(url))
     except requests.exceptions.HTTPError as error:
         exit("Ссылка не существует или произошла ошибка:\n{0}".format(error))
