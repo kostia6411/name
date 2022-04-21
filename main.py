@@ -56,7 +56,7 @@ def is_bitlink(bitlink):
 def checking_existence(url):
     response = requests.get(f"http://{url}")
 
-    return response.ok
+    response.raise_for_status()
 
 if __name__ == "__main__":
     main_link = "https://api-ssl.bitly.com/v4/"
