@@ -14,6 +14,8 @@ HEADERS = {
     "Authorization": f"Bearer {BITLY_TOKEN}"
 }
 
+MAIN_LINK = "https://api-ssl.bitly.com/v4/"
+
 
 def shorten_link(url):
     payload = {
@@ -22,7 +24,7 @@ def shorten_link(url):
     }
 
     response = requests.post(
-        f"{main_link}shorten",
+        f"{MAIN_LINK}shorten",
         headers=HEADERS,
         json=payload
     )
@@ -34,7 +36,7 @@ def shorten_link(url):
 
 def count_number_clicks(bitlink):
     response = requests.get(
-        f"{main_link}bitlinks/"\
+        f"{MAIN_LINK}bitlinks/"\
         f"{bitlink}/clicks/summary",
         headers=HEADERS
     )
@@ -46,7 +48,7 @@ def count_number_clicks(bitlink):
 
 def is_bitlink(bitlink):
     response = requests.get(
-        f"{main_link}bitlinks/{bitlink}",
+        f"{MAIN_LINK}bitlinks/{bitlink}",
         headers=HEADERS
     )
 
@@ -59,8 +61,6 @@ def checking_existence(url):
     response.raise_for_status()
 
 if __name__ == "__main__":
-    main_link = "https://api-ssl.bitly.com/v4/"
-
     parser = argparse.ArgumentParser(
         description='Программа считает ссылки и сокращает их'
     )
