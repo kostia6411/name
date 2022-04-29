@@ -14,7 +14,7 @@ HEADERS = {
     "Authorization": f"Bearer {BITLY_TOKEN}"
 }
 
-MAIN_LINK = "https://api-ssl.bitly.com/v4/"
+API_BITLY_LINK = "https://api-ssl.bitly.com/v4/"
 
 
 def shorten_link(url):
@@ -24,7 +24,7 @@ def shorten_link(url):
     }
 
     response = requests.post(
-        f"{MAIN_LINK}shorten",
+        f"{API_BITLY_LINK}shorten",
         headers=HEADERS,
         json=payload
     )
@@ -36,7 +36,7 @@ def shorten_link(url):
 
 def count_number_clicks(bitlink):
     response = requests.get(
-        f"{MAIN_LINK}bitlinks/"\
+        f"{API_BITLY_LINK}bitlinks/"\
         f"{bitlink}/clicks/summary",
         headers=HEADERS
     )
@@ -48,7 +48,7 @@ def count_number_clicks(bitlink):
 
 def is_bitlink(bitlink):
     response = requests.get(
-        f"{MAIN_LINK}bitlinks/{bitlink}",
+        f"{API_BITLY_LINK}bitlinks/{bitlink}",
         headers=HEADERS
     )
 
