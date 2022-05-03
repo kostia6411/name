@@ -6,26 +6,18 @@ import requests
 from dotenv import dotenv_values
 
 
-CUSTOM_DOMAIN = dotenv_values(".env").get("CUSTOM_DOMAIN", "")
-
-BITLY_TOKEN = dotenv_values(".env")["BITLY_TOKEN"]
-
-HEADERS = {
-    "Authorization": f"Bearer {BITLY_TOKEN}"
-}
-
 API_BITLY_LINK = "https://api-ssl.bitly.com/v4/"
 
 
-def shorten_link(url):
+def shorten_link(url, custom_domain, headers):
     payload = {
         "long_url": url,
-        "domain": CUSTOM_DOMAIN
+        "domain": custom_domain
     }
 
     response = requests.post(
         f"{API_BITLY_LINK}shorten",
-        headers=HEADERS,
+        headers=headers,
         json=payload
     )
 
@@ -34,11 +26,11 @@ def shorten_link(url):
     return response.json()["id"]
 
 
-def count_number_clicks(bitlink):
+def count_number_clicks(bitlink, headers):
     response = requests.get(
         f"{API_BITLY_LINK}bitlinks/"\
         f"{bitlink}/clicks/summary",
-        headers=HEADERS
+        headers=headers
     )
 
     response.raise_for_status()
@@ -46,10 +38,10 @@ def count_number_clicks(bitlink):
     return response.json()["total_clicks"]
 
 
-def is_bitlink(bitlink):
+def is_bitlink(bitlink, headers):
     response = requests.get(
         f"{API_BITLY_LINK}bitlinks/{bitlink}",
-        headers=HEADERS
+        headers=headers
     )
 
     return response.ok
@@ -61,6 +53,14 @@ def checking_existence(url):
     response.raise_for_status()
 
 if __name__ == "__main__":
+    custom_domain = dotenv_values(".env").get("CUSTOM_DOMAIN", "")
+
+    bitly_tocen = dotenv_values(".env")["BITLY_TOKEN"]
+
+    headers = {
+        "Authorization": f"Bearer {bitly_tocen}"
+    }
+
     parser = argparse.ArgumentParser(
         description='Программа считает ссылки и сокращает их'
     )
