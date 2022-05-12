@@ -4,7 +4,7 @@
 
 ### Как установить
 
-Зарегестрируйте ключ на сайте [Bitly](https://app.bitly.com/BlcngOTTfaY/bitlinks/3roypfS), ключ класть в файл .env , пример ключа: 159552b56ac5c79528d7b6abf93797230011c82f .
+Зарегистрируйте ключ на сайте [Bitly](https://app.bitly.com/BlcngOTTfaY/bitlinks/3roypfS), ключ класть в файл .env , пример ключа: 159552b56ac5c79528d7b6abf93797230011c82f .
 
 Пример файла .env
 ```
@@ -19,16 +19,14 @@ pip install -r requirements.txt
 
 ### Пример работы скрипта в случае штатной ситуации:
 Откройте командную строку.
-Если хотите сократить ссылку, то запустите программу и введите свою ссылку.
+Если хотите сократить ссылку, то запустите программу и введите свою ссылку. (Ссылка является аргументом при запуске скрипта)
 ```
-python main.py
-http://dvmn.org/modules/web-api/lesson/bitly/#3
+python main.py http://dvmn.org/modules/web-api/lesson/bitly/#3
 bit.ly/3fa6jy6
 ```
 Если хотите получить количество кликов по скоращенной ссылке, то запустите программу и введите сокращенную ссылку.
 ```
-python main.py
-bit.ly/3fa6jy6
+python main.py bit.ly/3fa6jy6
 1
 ```
 
