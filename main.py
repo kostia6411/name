@@ -55,10 +55,10 @@ def checking_existence(url):
 if __name__ == "__main__":
     custom_domain = dotenv_values(".env").get("CUSTOM_DOMAIN", "")
 
-    bitly_tocen = dotenv_values(".env")["BITLY_TOKEN"]
+    bitly_token = dotenv_values(".env")["BITLY_TOKEN"]
 
     headers = {
-        "Authorization": f"Bearer {bitly_tocen}"
+        "Authorization": f"Bearer {bitly_token}"
     }
 
     parser = argparse.ArgumentParser(
