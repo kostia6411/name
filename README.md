@@ -4,7 +4,7 @@
 
 ### Как установить
 
-Зарегестрируйте ключ на сайте [Bitly](https://app.bitly.com/BlcngOTTfaY/bitlinks/3roypfS), ключ класть в файл .env , пример ключа: 159552b56ac5c79528d7b6abf93797230011c82f .
+Зарегистрируйте ключ на сайте [Bitly](https://app.bitly.com/BlcngOTTfaY/bitlinks/3roypfS), ключ класть в файл .env , пример ключа: 159552b56ac5c79528d7b6abf93797230011c82f .
 
 Пример файла .env
 ```
