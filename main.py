@@ -46,12 +46,6 @@ def is_bitlink(bitlink, headers):
 
     return response.ok
 
-
-def checking_existence(url):
-    response = requests.get(f"http://{url}")
-
-    response.raise_for_status()
-
 if __name__ == "__main__":
     custom_domain = dotenv_values(".env").get("CUSTOM_DOMAIN", "")
 
@@ -75,7 +69,6 @@ if __name__ == "__main__":
     url_without_protocol = f"{parsed_link.netloc}{parsed_link.path}"
 
     try:
-        checking_existence(url_without_protocol)
         if is_bitlink(url_without_protocol):
             print(count_number_clicks(url_without_protocol))
         else:
