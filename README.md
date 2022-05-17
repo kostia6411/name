@@ -4,11 +4,11 @@
 
 ### Как установить
 
-Зарегистрируйте ключ на сайте [Bitly](https://app.bitly.com/BlcngOTTfaY/bitlinks/3roypfS), ключ класть в файл .env , пример ключа: 159552b56ac5c79528d7b6abf93797230011c82f .
+Нужно зарегистрироваться на [сайте](https://app.bitly.com/BlcngOTTfaY/bitlinks/3ya7qbw) и, перейдя в настройки учетной записи в разделе [Developer settings - API](https://app.bitly.com/settings/api/) получить свой токен.
 
 Пример файла .env
 ```
-BITLY_TOKEN=159552b56ac5c79528d7b6abf93797230011c82f
+BITLY_TOKEN=ваш токен
 ```
 
 Python3 должен быть уже установлен. 
